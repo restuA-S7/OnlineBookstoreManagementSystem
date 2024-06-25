@@ -1,7 +1,24 @@
+using BookstoreAPP.DAL;
+using BookstoreAPP.EF;
+using BookstoreAPP.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var pathDatabase = builder.Configuration.GetConnectionString("HangfireDB");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<BookstoreDbContext>(options =>
+{
+    options.UseSqlServer(pathDatabase);
+});
+
+builder.Services.AddScoped<IBook, BooksEF>();
+builder.Services.AddScoped<ICustomer, CustomersEF>();
+builder.Services.AddScoped<IOrderDetail, OrderDetailsEF>();
+builder.Services.AddScoped<IOrder, OrdersEF>();
+builder.Services.AddScoped<IReview, ReviewsEF>();
 
 var app = builder.Build();
 
