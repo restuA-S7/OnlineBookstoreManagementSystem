@@ -177,20 +177,3 @@ namespace ManagementApp
             }
         }
 
-        static void LihatInventaris()
-        {
-            using (var context = new BookstoreDbContext())
-            {
-                Console.Clear();
-                Console.WriteLine("Inventaris Buku:");
-                Console.WriteLine("ID\tJudul\tPenulis\tHarga\tStok");
-                foreach (var book in context.Books)
-                {
-                    Console.WriteLine($"{book.BookId}\t{book.Title}\t{book.Author}\t{book.Price}\t{book.Stock}");
-                }
-                Console.WriteLine("Tekan sembarang tombol untuk kembali ke menu utama.");
-                Console.ReadKey();
-            }
-        }
-    }
-}
