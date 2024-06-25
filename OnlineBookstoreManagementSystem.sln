@@ -5,9 +5,7 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagementApp", "ManagementApp\ManagementApp.csproj", "{0EBA2C6A-E161-4431-A837-93142744AF9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendApp", "BackendApp\BackendApp.csproj", "{0C496C74-3DE7-47AE-965B-BFE631391BBB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontendApp", "FrontendApp\FrontendApp.csproj", "{2906D4CF-1DC2-454E-B81E-A91201C3569A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookstoreAPP", "FrontendApp\BookstoreAPP.csproj", "{2906D4CF-1DC2-454E-B81E-A91201C3569A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkerApp", "WorkerApp\WorkerApp.csproj", "{EAF87A2C-F6E9-4475-8C15-04C54465D564}"
 EndProject
@@ -23,10 +21,6 @@ Global
 		{0EBA2C6A-E161-4431-A837-93142744AF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EBA2C6A-E161-4431-A837-93142744AF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EBA2C6A-E161-4431-A837-93142744AF9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C496C74-3DE7-47AE-965B-BFE631391BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C496C74-3DE7-47AE-965B-BFE631391BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C496C74-3DE7-47AE-965B-BFE631391BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C496C74-3DE7-47AE-965B-BFE631391BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2906D4CF-1DC2-454E-B81E-A91201C3569A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2906D4CF-1DC2-454E-B81E-A91201C3569A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2906D4CF-1DC2-454E-B81E-A91201C3569A}.Release|Any CPU.ActiveCfg = Release|Any CPU
