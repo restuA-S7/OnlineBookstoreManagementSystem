@@ -8,6 +8,7 @@ namespace BookstoreAPP.Models;
 
 public partial class BookstoreDbContext : DbContext
 {
+    //modelsdone
     public BookstoreDbContext(DbContextOptions<BookstoreDbContext> options)
         : base(options)
     {
