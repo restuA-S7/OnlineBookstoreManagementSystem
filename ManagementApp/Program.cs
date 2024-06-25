@@ -15,7 +15,7 @@ namespace ManagementApp
                 Console.WriteLine("1. Add New Book");
                 Console.WriteLine("2. Update Data");
                 Console.WriteLine("3. Delete Data");
-                Console.WriteLine("4. View Inventory");
+                Console.WriteLine("4. Lihat Inventaris");
                 Console.WriteLine("5. Exit");
                 Console.Write("Pilih opsi: ");
 
@@ -24,13 +24,13 @@ namespace ManagementApp
                     switch (choice)
                     {
                         case 1:
-                            AddNewBook();
+                            TambahBukuBaru();
                             break;
                         case 2:
-                            UpdateBook();
+                            PerbaruiBuku();
                             break;
                         case 3:
-                            DeleteBook();
+                            HapusBuku();
                             break;
                         case 4:
                             LihatInventaris();
@@ -51,7 +51,7 @@ namespace ManagementApp
             }
         }
 
-        static void AddNewBook()
+        static void TambahBukuBaru()
         {
             using (var context = new BookstoreDbContext())
             {
@@ -90,7 +90,7 @@ namespace ManagementApp
             }
         }
 
-        static void UpdateBook()
+        static void PerbaruiBuku()
         {
             using (var context = new BookstoreDbContext())
             {
@@ -141,7 +141,7 @@ namespace ManagementApp
             }
         }
 
-        static void DeleteBook()
+        static void HapusBuku()
         {
             using (var context = new BookstoreDbContext())
             {
@@ -177,3 +177,20 @@ namespace ManagementApp
             }
         }
 
+        static void LihatInventaris()
+        {
+            using (var context = new BookstoreDbContext())
+            {
+                Console.Clear();
+                Console.WriteLine("Inventaris Buku:");
+                Console.WriteLine("ID\tJudul\tPenulis\tHarga\tStok");
+                foreach (var book in context.Books)
+                {
+                    Console.WriteLine($"{book.BookId}\t{book.Title}\t{book.Author}\t{book.Price}\t{book.Stock}");
+                }
+                Console.WriteLine("Tekan sembarang tombol untuk kembali ke menu utama.");
+                Console.ReadKey();
+            }
+        }
+    }
+}
