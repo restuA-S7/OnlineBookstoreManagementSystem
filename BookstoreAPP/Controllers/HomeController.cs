@@ -1,8 +1,8 @@
-using FrontendApp.Models;
+using BookstoreAPP.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace FrontendApp.Controllers
+namespace BookstoreAPP.Controllers
 {
     public class HomeController : Controller
     {

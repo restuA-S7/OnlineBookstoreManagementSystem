@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FrontendApp/FrontendApp.csproj", "FrontendApp/"]
-RUN dotnet restore "./FrontendApp/FrontendApp.csproj"
+COPY ["BookstoreAPP/BookstoreAPP.csproj", "BookstoreAPP/"]
+RUN dotnet restore "./BookstoreAPP/BookstoreAPP.csproj"
 COPY . .
-WORKDIR "/src/FrontendApp"
-RUN dotnet build "./FrontendApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/BookstoreAPP"
+RUN dotnet build "./BookstoreAPP.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FrontendApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./BookstoreAPP.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "FrontendApp.dll"]
+ENTRYPOINT ["dotnet", "BookstoreAPP.dll"]
