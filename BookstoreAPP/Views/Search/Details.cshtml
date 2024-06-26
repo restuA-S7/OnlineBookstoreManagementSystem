@@ -1,6 +1,4 @@
-﻿@Model BookstoreAPP.DTO.BookDetailViewModel
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -88,6 +86,10 @@
                 .add-to-cart button:hover {
                     background-color: #0056b3;
                 }
+
+        .stars {
+            color: #ffc107;
+        }
     </style>
 </head>
 
@@ -108,35 +110,16 @@
             {
                 @foreach (var review in Model.ReviewDto)
                 {
-
                     <div class="review-item">
-                        @* <h4>@review.Customer.Name</h4> *@
-                        @*                         <div class="rating">
-                            @for (int i = 0; i < review.Rating; i++)
-                            {
-                                <span>&#9733;</span>
-                            }
-                            @for (int i = review.Rating; i < 5; i++)
-                            {
-                                <span>&#9734;</span>
-                            }
-                        </div> *@
-                       
-                        
-                        @if(review.Customer != null)
+                        @if (review.Customer != null)
                         {
                             <h3>@review.Customer.Name</h3>
-                            <p>@review.Rating</p>
+                            <div class="stars" data-rating="@review.Rating"></div>
                             <p>@review.Comment</p>
                         }
-
-                    </div> 
+                    </div>
                 }
             }
-@*             @else
-            {
-                <p>No reviews available.</p>
-            } *@
         </div>
         <div class="add-to-cart">
             <form method="post" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.Book.BookId">
@@ -147,7 +130,34 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $.fn.stars = function () {
+            return $(this).each(function () {
+                // Get the value
+                var val = parseFloat($(this).data('rating'));
+
+                // Make sure that the value is in 0 - 5 range
+                val = Math.max(0, Math.min(5, val));
+
+                // Round to nearest quarter
+                val = Math.round(val * 4) / 4;
+
+                // Generate stars
+                var fullStars = Math.floor(val);
+                var halfStar = val % 1 !== 0 ? 1 : 0;
+                var emptyStars = 5 - fullStars - halfStar;
+
+                var stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
+
+                // Replace the numerical value with stars
+                $(this).html(stars);
+            });
+        }
+
+        $(function () {
+            $('.stars').stars();
+        });
+    </script>
 
 </body>
-
 </html>
