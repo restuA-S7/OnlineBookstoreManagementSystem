@@ -4,7 +4,7 @@ namespace BookstoreAPP.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             return View();
         }
