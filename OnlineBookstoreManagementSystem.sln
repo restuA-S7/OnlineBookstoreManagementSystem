@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagementApp", "Management
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkerApp", "WorkerApp\WorkerApp.csproj", "{EAF87A2C-F6E9-4475-8C15-04C54465D564}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HingfireApp", "HingfireApp\HingfireApp.csproj", "{26CCAEDE-FEC9-4F32-B3EA-EF08BE64D855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangfireApp", "HingfireApp\HangfireApp.csproj", "{26CCAEDE-FEC9-4F32-B3EA-EF08BE64D855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreAPP", "BookstoreAPP\BookstoreAPP.csproj", "{CECA4831-5CC5-4413-A2EE-CCC23AC0DAF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookstoreAPP", "BookstoreAPP\BookstoreAPP.csproj", "{CECA4831-5CC5-4413-A2EE-CCC23AC0DAF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
