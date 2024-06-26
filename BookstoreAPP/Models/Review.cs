@@ -13,11 +13,11 @@ public partial class Review
 
     public int CustomerId { get; set; }
 
-    public int Rating { get; set; } = 0;
+    public int Rating { get; set; }
 
-    public string Comment { get; set; } = null;
+    public string Comment { get; set; }
 
-    public Book Book { get; set; }
+    public virtual Book Book { get; set; }
 
-    public Customer Customer { get; set; }
+    public virtual Customer Customer { get; set; }
 }

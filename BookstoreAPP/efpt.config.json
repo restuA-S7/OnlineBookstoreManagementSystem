@@ -15,6 +15,10 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[dbo].[Account]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Books]",
          "ObjectType": 0
       },
@@ -33,6 +37,10 @@
       {
          "Name": "[dbo].[Reviews]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[GenerateDailySalesReport]",
+         "ObjectType": 1
       }
    ],
    "UiHint": null,
