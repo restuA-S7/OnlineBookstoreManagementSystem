@@ -1,0 +1,34 @@
+﻿<html>
+    <body>
+    <h1> @Model.Customer.Name</h1>
+    <div>
+        <h2>Order Details</h2>
+        <table>
+            <tr>
+                <td>Title</td>
+                <td>Quantity</td>
+                <td>Price</td>
+            </tr>
+
+        @{
+            decimal TotalAmount = 0;
+        }
+        
+        @foreach(var orderdet in Model.OrderDetails)
+        {
+            <tr>
+                <td>@orderdet.Book.Title</td>
+                <td>@orderdet.Quantity</td>
+                <td>@orderdet.Price</td>
+            </tr>
+            TotalAmount += orderdet.Price * orderdet.Quantity;
+        }
+        <tr>
+            <td></td>
+            <td>Total Amount</td>
+            <td>@TotalAmount</td>
+        </tr>
+        </table>
+    </div>
+    </body>
+</html>

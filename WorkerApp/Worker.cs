@@ -2,6 +2,7 @@ using FluentEmail.Core;
 using FluentEmail.Razor;
 using FluentEmail.Smtp;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using WorkerApp.Models;
@@ -28,36 +29,37 @@ namespace WorkerApp
                     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 }
                 using (var scope = _serviceProvider.CreateScope())
-                { 
+                {
                     var dbContext = scope.ServiceProvider.GetRequiredService<BookstoreDbContext>();
-                    var orderCustomerEmail = dbContext.Orders.Include(ord => ord.Customer).ToList();
+                    var orderCustomerEmail = dbContext.Orders
+                                            .Include(ord => ord.Customer)
+                                            .Include(ord => ord.OrderDetails).ThenInclude(ordet => ordet.Book)
+                                            .ToList();
 
-                    var sender = new SmtpSender(() => new SmtpClient("localhost")
+                    string fromMail = "smtpcoba2@gmail.com";
+                    string fromPassword = "xqlncjhfonnfcsyj";
+
+                    //judul buku, quantity, price
+                    var sender = new SmtpSender(() => new SmtpClient("smtp.gmail.com")
                     {
-                        EnableSsl = false,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        Port = 25
+                        Port = 587,
+                        Credentials = new NetworkCredential(fromMail, fromPassword),
+                        EnableSsl = true
                     });
-                    StringBuilder template = new StringBuilder();
-                    template.AppendLine("Dear @Model.email");
-                    template.AppendLine("<p>@Model.name</p>");
-                    template.AppendLine("Team OnlineBook");
 
+                    StringBuilder template = new StringBuilder();
                     Email.DefaultSender = sender;
                     Email.DefaultRenderer = new RazorRenderer();
 
+
                     foreach (var orderCust in orderCustomerEmail)
                     {
+
                         var email = await Email
-                                    .From("Tim@tim.com")
-                                    .To(orderCust.Customer.Email, orderCust.Customer.Name)
-                                    .Subject("Thanks!")
-                                    .UsingTemplate(template.ToString(),
-                                                    new
-                                                    {
-                                                        email = orderCust.Customer.Email,
-                                                        name = orderCust.Customer.Name
-                                                    })
+                                    .From(fromMail)
+                                    .To(orderCust.Customer.Email)
+                                    .Subject("Order Confirmation")
+                                    .UsingTemplateFromFile($"{Directory.GetCurrentDirectory()}/TemplateEmail.cshtml", orderCust)
                                     .SendAsync();
                     }
                 }

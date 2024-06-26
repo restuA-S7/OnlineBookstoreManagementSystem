@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 
 namespace WorkerApp.Models;
@@ -25,9 +26,9 @@ public partial class BookstoreDbContext : DbContext
 
     public virtual DbSet<Review> Reviews { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=127.0.0.1,1455;database=BookstoreDb;uid=sa;pwd=Password#123;TrustServerCertificate=Yes;");
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("server=127.0.0.1,1455;database=BookstoreDb;uid=sa;pwd=Password#123;TrustServerCertificate=Yes;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -100,4 +101,62 @@ public partial class BookstoreDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    //public void SeedData()
+    //{
+    //    var faker = new Faker();
+
+    //    // Generate fake customers
+
+    //    var customers = new Faker<Customer>()
+    //        .RuleFor(c => c.Name, f => f.Name.FullName())
+    //        .RuleFor(c => c.Email, f => f.Internet.Email())
+    //        .Generate(10);
+
+    //    Customers.AddRange(customers);
+
+    //    // Generate fake books
+    //    var books = new Faker<Book>()
+    //        .RuleFor(b => b.Title, f => f.Commerce.ProductName())
+    //        .RuleFor(b => b.Author, f => f.Name.FullName())
+    //        .RuleFor(b => b.Price, f => f.Commerce.Price())
+    //        .Generate(10);
+
+    //    Books.AddRange(books);
+
+    //    // Save changes to generate IDs
+    //    SaveChanges();
+
+    //    // Generate fake orders
+    //    var orders = new Faker<Order>()
+    //        .RuleFor(o => o.CustomerId, f => f.PickRandom(customers).CustomerId)
+    //        .RuleFor(o => o.OrderDate, f => f.Date.Past())
+    //        .RuleFor(o => o.TotalAmount, f => f.Commerce.Price())
+    //        .Generate(5);
+
+    //    Orders.AddRange(orders);
+
+    //    // Save changes to generate IDs
+    //    SaveChanges();
+
+    //    // Generate fake order details
+    //    var orderDetails = new Faker<OrderDetail>()
+    //        .RuleFor(od => od.OrderId, f => f.PickRandom(orders).OrderId)
+    //        .RuleFor(od => od.BookId, f => f.PickRandom(books).BookId)
+    //        .RuleFor(od => od.Price, f => f.Commerce.Price())
+    //        .Generate(20);
+
+    //    OrderDetails.AddRange(orderDetails);
+
+    //    // Generate fake reviews
+    //    var reviews = new Faker<Review>()
+    //        .RuleFor(r => r.BookId, f => f.PickRandom(books).BookId)
+    //        .RuleFor(r => r.CustomerId, f => f.PickRandom(customers).CustomerId)
+    //        .RuleFor(r => r.ReviewText, f => f.Lorem.Paragraph())
+    //        .Generate(15);
+
+    //    Reviews.AddRange(reviews);
+
+    //    // Save all changes
+    //    SaveChanges();
+    //}
 }
