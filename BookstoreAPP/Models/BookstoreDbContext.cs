@@ -13,6 +13,8 @@ public partial class BookstoreDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Account> Accounts { get; set; }
+
     public virtual DbSet<Book> Books { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
@@ -25,6 +27,21 @@ public partial class BookstoreDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+
+            entity.ToTable("Account");
+
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.Password)
+                .IsRequired()
+                .HasMaxLength(50);
+            entity.Property(e => e.Username)
+                .IsRequired()
+                .HasMaxLength(50);
+        });
+
         modelBuilder.Entity<Book>(entity =>
         {
             entity.Property(e => e.BookId).HasColumnName("BookID");
@@ -65,6 +82,8 @@ public partial class BookstoreDbContext : DbContext
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
+            entity.ToTable(tb => tb.HasTrigger("trg_Stock_Update"));
+
             entity.Property(e => e.OrderDetailId).HasColumnName("OrderDetailID");
             entity.Property(e => e.BookId).HasColumnName("BookID");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
