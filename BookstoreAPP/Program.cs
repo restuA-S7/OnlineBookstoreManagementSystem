@@ -1,5 +1,4 @@
 using BookstoreAPP.DAL;
-using BookstoreAPP.EF;
 using BookstoreAPP.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +8,7 @@ var pathDatabase = builder.Configuration.GetConnectionString("HangfireDB");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<BookstoreDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(pathDatabase);
 });

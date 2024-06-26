@@ -13,9 +13,9 @@ public partial class Review
 
     public int CustomerId { get; set; }
 
-    public int Rating { get; set; }
+    public int Rating { get; set; } = 0;
 
-    public string Comment { get; set; }
+    public string Comment { get; set; } = null;
 
     public virtual Book Book { get; set; }
 

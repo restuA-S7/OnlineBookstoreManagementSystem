@@ -1,11 +1,10 @@
-﻿using BookstoreAPP.DAL;
-using BookstoreAPP.Models;
+﻿using BookstoreAPP.Models;
 
-namespace BookstoreAPP.EF
+namespace BookstoreAPP.DAL
 {
-    public class OrdersEF : IOrder
+    public class OrderDetailsEF : IOrderDetail
     {
-        public Order Add(Order entity)
+        public OrderDetail Add(OrderDetail entity)
         {
             throw new NotImplementedException();
         }
@@ -15,17 +14,17 @@ namespace BookstoreAPP.EF
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<OrderDetail> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Order GetById(int id)
+        public OrderDetail GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Order Update(Order entity)
+        public OrderDetail Update(OrderDetail entity)
         {
             throw new NotImplementedException();
         }

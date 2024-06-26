@@ -1,11 +1,10 @@
-﻿using BookstoreAPP.DAL;
-using BookstoreAPP.Models;
+﻿using BookstoreAPP.Models;
 
-namespace BookstoreAPP.EF
+namespace BookstoreAPP.DAL
 {
-    public class BooksEF : IBook
+    public class CustomersEF : ICustomer
     {
-        public Book Add(Book entity)
+        public Customer Add(Customer entity)
         {
             throw new NotImplementedException();
         }
@@ -15,17 +14,17 @@ namespace BookstoreAPP.EF
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Customer> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Book GetById(int id)
+        public Customer GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Book Update(Book entity)
+        public Customer Update(Customer entity)
         {
             throw new NotImplementedException();
         }

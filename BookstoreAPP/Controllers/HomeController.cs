@@ -1,3 +1,4 @@
+using BookstoreAPP.DAL;
 using BookstoreAPP.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,8 +8,6 @@ namespace BookstoreAPP.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-
 
         public HomeController(ILogger<HomeController> logger)
         {
