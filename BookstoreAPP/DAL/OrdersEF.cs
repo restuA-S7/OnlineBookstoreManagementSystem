@@ -1,32 +1,41 @@
-﻿//using BookstoreAPP.Models;
+﻿using BookstoreAPP.Models;
 
-//namespace BookstoreAPP.DAL
-//{
-//    public class OrdersEF : IOrder
-//    {
-//        public Order Add(Order entity)
-//        {
-//            throw new NotImplementedException();
-//        }
+namespace BookstoreAPP.DAL
+{
+    public class OrdersEF : IOrder
+    {
+        private readonly BookstoreDbContext _dbContext;
 
-//        public void Delete(int id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public OrdersEF(BookstoreDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-//        public IEnumerable<Order> GetAll()
-//        {
-//            throw new NotImplementedException();
-//        }
+        public Order Add(Order entity)
+        {
+            _dbContext.Add(entity);
+            _dbContext.SaveChanges();
+            return entity;
+        }
 
-//        public Order GetById(int id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-//        public Order Update(Order entity)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public IEnumerable<Order> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Order GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Order Update(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
