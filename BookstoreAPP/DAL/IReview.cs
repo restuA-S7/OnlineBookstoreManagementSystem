@@ -1,9 +1,9 @@
-﻿using BookstoreAPP.Models;
+﻿//using BookstoreAPP.Models;
 
-namespace BookstoreAPP.DAL
-{
-    public interface IReview: ICrud<Review>
-    {
-        IEnumerable<Review> GetByReviewId(int bookId);
-    }
-}
+//namespace BookstoreAPP.DAL
+//{
+//    public interface IReview: ICrud<Review>
+//    {
+//        IEnumerable<Review> GetByReviewId(int bookId);
+//    }
+//}

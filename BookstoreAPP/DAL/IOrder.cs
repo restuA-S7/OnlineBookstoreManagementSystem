@@ -1,8 +1,8 @@
-﻿using BookstoreAPP.Models;
+﻿//using BookstoreAPP.Models;
 
-namespace BookstoreAPP.DAL
-{
-    public interface IOrder: ICrud<Order>
-    {
-    }
-}
+//namespace BookstoreAPP.DAL
+//{
+//    public interface IOrder: ICrud<Order>
+//    {
+//    }
+//}

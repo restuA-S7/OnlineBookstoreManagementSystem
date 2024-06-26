@@ -7,12 +7,8 @@
 		<UserSecretsId>fa2da3e0-8b83-4f1c-a812-ed0877c257cc</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
-
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Include="efpt.config.json.user" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
