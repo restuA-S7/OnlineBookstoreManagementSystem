@@ -104,14 +104,14 @@
 
         <div class="reviews">
             <h3>Reviews</h3>
-            @if (Model.Reviews != null)
+            @if (Model.ReviewDto != null)
             {
-                @foreach (var review in Model.Reviews)
+                @foreach (var review in Model.ReviewDto)
                 {
 
-                     <div class="review-item">
+                    <div class="review-item">
                         @* <h4>@review.Customer.Name</h4> *@
-@*                         <div class="rating">
+                        @*                         <div class="rating">
                             @for (int i = 0; i < review.Rating; i++)
                             {
                                 <span>&#9733;</span>
@@ -121,7 +121,15 @@
                                 <span>&#9734;</span>
                             }
                         </div> *@
-                        <p>@review.Comment</p>
+                       
+                        
+                        @if(review.Customer != null)
+                        {
+                            <h3>@review.Customer.Name</h3>
+                            <p>@review.Rating</p>
+                            <p>@review.Comment</p>
+                        }
+
                     </div> 
                 }
             }

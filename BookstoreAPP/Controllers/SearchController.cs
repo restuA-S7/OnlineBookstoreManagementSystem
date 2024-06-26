@@ -1,7 +1,9 @@
 ﻿using BookstoreAPP.DAL;
 using BookstoreAPP.DTO;
+using BookstoreAPP.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BookstoreAPP.Controllers
 {
@@ -31,10 +33,29 @@ namespace BookstoreAPP.Controllers
             }
             var reviews = _reviewEF.GetByReviewId(id);
 
+            var listrevdto = new List<ReviewDTO>();
+
+            foreach (var review in book.Reviews) {
+                listrevdto.Add(new ReviewDTO {
+                    Rating = review.Rating,
+                    Comment = review.Comment,
+                    Customer = new CustomerDTO { 
+                        Name = review.Customer.Name,
+                    }
+                });
+            }
+
             var viewModel = new BookDetailViewModel
             {
-                Book = book,
-                Reviews = reviews
+               Book=new BookDTO
+               {
+                   Title=book.Title,
+                   BookId=book.BookId,
+                   Author=book.Author,
+                   Price=book.Price,
+                   Stock=book.Stock
+               },
+               ReviewDto = listrevdto
             };
 
             return View(viewModel);

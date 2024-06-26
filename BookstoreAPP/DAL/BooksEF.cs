@@ -41,7 +41,7 @@ namespace BookstoreAPP.DAL
 
         public Book GetById(int id)
         {
-            var result = _dbContext.Books.Where(x => x.BookId == id).FirstOrDefault();
+            var result = _dbContext.Books.Where(x => x.BookId == id).Include(bo => bo.Reviews).ThenInclude(Re => Re.Customer).FirstOrDefault();
             if (result == null)
             {
                 throw new ArgumentException("Product Id Not Found");

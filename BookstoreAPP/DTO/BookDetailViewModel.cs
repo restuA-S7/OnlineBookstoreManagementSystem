@@ -4,7 +4,8 @@ namespace BookstoreAPP.DTO
 {
     public class BookDetailViewModel
     {
-        public Book Book { get; set; }
-        public IEnumerable<Review> Reviews { get; set; }
+        public BookDTO Book { get; set; }
+        public List<ReviewDTO> ReviewDto { get; set; }
+       
     }
 }

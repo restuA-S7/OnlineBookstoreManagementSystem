@@ -17,7 +17,7 @@ public partial class Review
 
     public string Comment { get; set; } = null;
 
-    public virtual Book Book { get; set; }
+    public Book Book { get; set; }
 
-    public virtual Customer Customer { get; set; }
+    public Customer Customer { get; set; }
 }
