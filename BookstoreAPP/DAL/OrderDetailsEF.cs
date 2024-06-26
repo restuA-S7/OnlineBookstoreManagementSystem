@@ -1,12 +1,20 @@
 ﻿using BookstoreAPP.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookstoreAPP.DAL
 {
     public class OrderDetailsEF : IOrderDetail
     {
+        private readonly AppDbContext _dbContext;
+        public OrderDetailsEF(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public OrderDetail Add(OrderDetail entity)
         {
-            throw new NotImplementedException();
+            _dbContext.OrderDetails.Add(entity);
+            _dbContext.SaveChanges();
+            return entity;
         }
 
         public void Delete(int id)
@@ -16,17 +24,19 @@ namespace BookstoreAPP.DAL
 
         public IEnumerable<OrderDetail> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.OrderDetails.ToList();
         }
 
         public OrderDetail GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.OrderDetails.SingleOrDefault(od => od.OrderDetailId == id);
         }
 
         public OrderDetail Update(OrderDetail entity)
         {
-            throw new NotImplementedException();
+            _dbContext.OrderDetails.Update(entity);
+            _dbContext.SaveChanges();
+            return entity;
         }
     }
 }

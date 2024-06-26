@@ -6,6 +6,7 @@ namespace BookstoreAPP.DTO
     {
         public BookDTO Book { get; set; }
         public List<ReviewDTO> ReviewDto { get; set; }
-       
+        public bool IsLoggedIn { get; set; }
+
     }
 }

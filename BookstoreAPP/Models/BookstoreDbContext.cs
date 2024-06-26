@@ -65,20 +65,20 @@ public partial class BookstoreDbContext : DbContext
                 .HasMaxLength(100);
         });
 
-        modelBuilder.Entity<Order>(entity =>
+        modelBuilder.Entity<Order>((Action<Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Order>>)(entity =>
         {
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property<int>(e => (int)e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.TotalAmount).HasColumnType("money");
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Orders_Customers");
-        });
+//            RelationalForeignKeyBuilderExtensions.HasConstraintName<Customer, Order>(entity.HasOne<Customer>(d => (Customer)d.CustomerId).WithMany(p => p.Orders)
+//                .HasForeignKey(d => (object)d.CustomerId)
+//                .OnDelete(DeleteBehavior.ClientSetNull)
+//, "FK_Orders_Customers");
+        }));
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {

@@ -16,7 +16,12 @@ namespace BookstoreAPP.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new LayoutViewModel
+            {
+                IsLoggedIn = User.Identity.IsAuthenticated,
+                UserRole = User.IsInRole("Staff") ? "Staff" : "Customer"
+            };
+            return View(model);
         }
 
         public IActionResult Privacy()

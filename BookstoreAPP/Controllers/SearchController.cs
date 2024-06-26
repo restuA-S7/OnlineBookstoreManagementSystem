@@ -31,15 +31,19 @@ namespace BookstoreAPP.Controllers
             {
                 return NotFound();
             }
+
             var reviews = _reviewEF.GetByReviewId(id);
 
             var listrevdto = new List<ReviewDTO>();
 
-            foreach (var review in book.Reviews) {
-                listrevdto.Add(new ReviewDTO {
+            foreach (var review in book.Reviews)
+            {
+                listrevdto.Add(new ReviewDTO
+                {
                     Rating = review.Rating,
                     Comment = review.Comment,
-                    Customer = new CustomerDTO { 
+                    Customer = new CustomerDTO
+                    {
                         Name = review.Customer.Name,
                     }
                 });
@@ -47,15 +51,16 @@ namespace BookstoreAPP.Controllers
 
             var viewModel = new BookDetailViewModel
             {
-               Book=new BookDTO
-               {
-                   Title=book.Title,
-                   BookId=book.BookId,
-                   Author=book.Author,
-                   Price=book.Price,
-                   Stock=book.Stock
-               },
-               ReviewDto = listrevdto
+                Book = new BookDTO
+                {
+                    Title = book.Title,
+                    BookId = book.BookId,
+                    Author = book.Author,
+                    Price = book.Price,
+                    Stock = book.Stock
+                },
+                ReviewDto = listrevdto,
+                IsLoggedIn = User.Identity.IsAuthenticated // Set IsLoggedIn based on authentication status
             };
 
             return View(viewModel);

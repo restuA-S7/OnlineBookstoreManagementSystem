@@ -1,1 +1,41 @@
-﻿<h1>Tampil ini</h1>
+﻿@model IEnumerable<BookstoreAPP.DTO.CartViewModel>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+<div>
+    <p>Order ID: @ViewBag.OrderID</p>
+    <p>Total Amount: @ViewBag.TotalAmount</p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>@item.TotalAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <form method="get" asp-controller="Cart" asp-action="Review">
+        <input type="hidden" name="orderId" value="@ViewBag.OrderID" />
+        <button type="submit" class="btn btn-primary">Review Order</button>
+    </form>
+</div>

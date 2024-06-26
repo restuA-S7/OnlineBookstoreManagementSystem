@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Book Details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+﻿@model BookstoreAPP.DTO.BookDetailViewModel
+
+@{
+    ViewData["Title"] = "Book Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -91,43 +91,55 @@
             color: #ffc107;
         }
     </style>
-</head>
+}
 
-<body>
+<div class="container">
+    <h1>Book Details</h1>
 
-    <div class="container">
-        <h1>Book Details</h1>
-
-        <div class="book-detail">
-            <h2>@Model.Book.Title</h2>
-            <p><strong>Author:</strong> @Model.Book.Author</p>
-            <p class="price"><strong>Price:</strong> $@Model.Book.Price</p>
-        </div>
-
-        <div class="reviews">
-            <h3>Reviews</h3>
-            @if (Model.ReviewDto != null)
-            {
-                @foreach (var review in Model.ReviewDto)
-                {
-                    <div class="review-item">
-                        @if (review.Customer != null)
-                        {
-                            <h3>@review.Customer.Name</h3>
-                            <div class="stars" data-rating="@review.Rating"></div>
-                            <p>@review.Comment</p>
-                        }
-                    </div>
-                }
-            }
-        </div>
-        <div class="add-to-cart">
-            <form method="post" asp-action="Index" asp-controller="Cart" asp-route-id="@Model.Book.BookId">
-                <button type="submit">Add to Cart</button>
-            </form>
-        </div>
+    <div class="book-detail">
+        <h2>@Model.Book.Title</h2>
+        <p><strong>Author:</strong> @Model.Book.Author</p>
+        <p class="price"><strong>Price:</strong> $@Model.Book.Price</p>
     </div>
 
+    <div class="reviews">
+        <h3>Reviews</h3>
+        @if (Model.ReviewDto != null && Model.ReviewDto.Any())
+        {
+            @foreach (var review in Model.ReviewDto)
+            {
+                <div class="review-item">
+                    @if (review.Customer != null)
+                    {
+                        <h4>@review.Customer.Name</h4>
+                        <div class="stars" data-rating="@review.Rating"></div>
+                        <p>@review.Comment</p>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <p>No reviews available for this book.</p>
+        }
+    </div>
+
+    <div class="add-to-cart">
+        @if (Model.IsLoggedIn)
+        {
+            <form method="post" asp-action="Index" asp-controller="Cart">
+                <input type="hidden" name="bookId" value="@Model.Book.BookId" />
+                <button type="submit">Add to Cart</button>
+            </form>
+        }
+        else
+        {
+            <p>User is not logged in! Please <a href="/Account/Login">login</a> to add this item to cart.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -158,6 +170,4 @@
             $('.stars').stars();
         });
     </script>
-
-</body>
-</html>
+}
