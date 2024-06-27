@@ -11,7 +11,9 @@ namespace BookstoreAPP.DAL
         }
         public Review Add(Review entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Add(entity);
+            _dbContext.SaveChanges();
+            return entity;
         }
 
         public void Delete(int id)

@@ -18,6 +18,11 @@ namespace BookstoreAPP.DAL
             return entity;
         }
 
+        private Order Json(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(int id)
         {
             throw new NotImplementedException();
@@ -34,6 +39,11 @@ namespace BookstoreAPP.DAL
         }
 
         public Order Update(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Where(Func<object, bool> value)
         {
             throw new NotImplementedException();
         }
